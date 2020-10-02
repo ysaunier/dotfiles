@@ -766,14 +766,14 @@ for app in "Activity Monitor" \
     "Dock" \
     "Finder" \
     "Google Chrome" \
-    "Mail" \
-    "Messages" \
-    "Photos" \
-    "Safari" \
-    "Spectacle" \
+    # "Mail" \
+    # "Messages" \
+    # "Photos" \
+    # "Safari" \
+    # "Spectacle" \
     "SystemUIServer" \
     "Terminal" \
-    "Tweetbot" \
+    # "Tweetbot" \
     "iCal"; do
     killall "${app}" &> /dev/null
 done

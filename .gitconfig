@@ -25,6 +25,23 @@
     # Interactive rebase with the given number of latest commits
     reb = "!r() { git rebase -i HEAD~$1; }; r"
 
+    # Push changes on server
+    poh = push origin HEAD
+    # Create new branch
+    cob = checkout -b
+    # Move on a branch
+    co = checkout
+    # create commit with message
+    cm = commit -m
+    # Revert changes
+    undo = reset --hard origin/master
+    # Create delta with the last version tag
+    rnotes = "! fn() { git fetch --all; git log $(git describe --tags --abbrev=0 origin/master)..origin/master --format=\"- %s\"; }; fn"
+    # Push an empty commit for trigger the CI
+    pef = "! fn() { git commit --allow-empty -m \"trigger build\"; git push --force-with-lease; }; fn"
+    # View abbreviated SHA, description, and history graph
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix

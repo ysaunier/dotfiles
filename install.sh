@@ -29,7 +29,7 @@ if ! grep -q $(which zsh) /etc/shells; then
 fi
 
 # Create my code directory
-mkdir $HOME/Code
+mkdir $HOME/projects
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc

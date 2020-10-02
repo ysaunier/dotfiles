@@ -80,10 +80,14 @@ cask 'slack'
 cask 'spectacle'        # no better ways to move windows around
 cask 'sublime-text'
 cask 'zoomus'
+cask 'visual-studio-code'
 
 # Gaming
 cask 'battle-net'
 cask 'discord'
+
+# Music
+cask 'spotify'
 
 # Quicklook
 cask 'betterzip'        # preview zip archives
@@ -104,11 +108,11 @@ cask 'font-fira-code'
 mas '1Password', id: 1333542190     # password manager
 mas 'Annotate', id: 918207447       # annotate screenshots like a boss
 mas 'Bear', id: 1091189122          # note taking app
-mas 'Deliveries', id: 924726344     # package tracking
-mas 'Kaleidoscope', id: 587512244   # the best difftool ever, fight me
-mas 'Next Meeting', id: 1017470484  # See what meeting is up next, right in the status bar
-mas 'Pastebot', id: 1179623856
-mas 'Pixelmator', id: 407963104
-mas 'Reeder', id: 880001334         # nope, RSS is not dead
-mas 'Soulver', id: 413965349
-mas 'Tweetbot', id: 557168941       # less and less powerful Twitter client (not their fault though!)
+# mas 'Deliveries', id: 924726344     # package tracking
+# mas 'Kaleidoscope', id: 587512244   # the best difftool ever, fight me
+# mas 'Next Meeting', id: 1017470484  # See what meeting is up next, right in the status bar
+# mas 'Pastebot', id: 1179623856
+# mas 'Pixelmator', id: 407963104
+# mas 'Reeder', id: 880001334         # nope, RSS is not dead
+# mas 'Soulver', id: 413965349
+# mas 'Tweetbot', id: 557168941       # less and less powerful Twitter client (not their fault though!)

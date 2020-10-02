@@ -23,23 +23,26 @@ sudo softwareupdate -i -a
 # 2. Install macOS Command Line Tools
 xcode-select --install
 
-# 3. Copy your public and private SSH keys to ~/.ssh and make sure they're set to 600
+# 3. Generate SSH Key
+ssh-keygen -t rsa
 
-# 4. Clone this repo to ~/.dotfiles
+# 4. Copy your public and private SSH keys to ~/.ssh and make sure they're set to 600
+
+# 5. Clone this repo to ~/.dotfiles
 cd ~; git clone git@github.com:marcaube/dotfiles.git .dotfiles
 
-# 5. Run install.sh to start the installation
+# 6. Run install.sh to start the installation
 cd ~/.dotfiles; sh install.sh; cd -
 
-# 6. Login with your Apple ID, check iCloud Drive and let it sync for a while
+# 7. Login with your Apple ID, check iCloud Drive and let it sync for a while
 
-# 7. Restore preferences
+# 8. Restore preferences
 mackup restore
 
-# 8. Check that homebrew installations are A1
+# 9. Check that homebrew installations are A1
 brew doctor
 
-# 9. Restart your computer to finalize the process
+# 10. Restart your computer to finalize the process
 shutdown -r now
 ```
 
@@ -103,6 +106,7 @@ For example, that's where I define my `GIT_AUTHOR_NAME` and `GIT_AUTHOR_EMAIL`.
 
 ## Inspired by...
 
+- Marc Aubé's [dotfiles](https://github.com/marcaube/dotfiles)
 - Mathias Bynens' [dotfiles](https://github.com/mathiasbynens/dotfiles)
 - Dries Vints' [dotfiles](https://github.com/driesvints/dotfiles)
 - Sourabh Bajaj's [macOS Setup Guide](https://sourabhbajaj.com/mac-setup/)
