@@ -29,7 +29,7 @@ ssh-keygen -t rsa
 # 4. Copy your public and private SSH keys to ~/.ssh and make sure they're set to 600
 
 # 5. Clone this repo to ~/.dotfiles
-cd ~; git clone git@github.com:marcaube/dotfiles.git .dotfiles
+cd ~; git clone git@github.com:ysaunier/dotfiles.git .dotfiles
 
 # 6. Run install.sh to start the installation
 cd ~/.dotfiles; sh install.sh; cd -
