@@ -16,6 +16,12 @@ If you have a working computer, make sure you first go through this checklist be
 
 ## Installation
 
+## For finding the App number
+```bash
+mas search <name_of_the_application>
+```
+
+### Run it
 ```bash
 # 1. Update macOS to the latest version with the App Store
 sudo softwareupdate -i -a
