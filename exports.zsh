@@ -36,3 +36,16 @@ VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 
 # For psycopg2, see: https://github.com/psycopg/psycopg2/issues/890
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+# export WORKON_HOME=$HOME/.virtualenvs
+# export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source /usr/local/bin/virtualenvwrapper.sh
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh

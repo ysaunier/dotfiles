@@ -81,9 +81,10 @@ cask 'spectacle'        # no better ways to move windows around
 cask 'sublime-text'
 cask 'zoomus'
 cask 'visual-studio-code'
+cask 'ngrok'
 
 # Gaming
-cask 'battle-net'
+# cask 'battle-net'
 cask 'discord'
 
 # Music

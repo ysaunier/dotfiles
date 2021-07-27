@@ -1,0 +1,71 @@
+#!/bin/bash
+
+
+usage()
+{
+  echo "Usage: poka-versions [ -d | --dev ] [ -s | --stage ] [ -p | --prod ] instance"
+  exit 2
+}
+
+display()
+{
+  instance=$1
+  domain=$2
+  url="https://$instance.$domain"
+  backend=$(curl -sb --request GET "$url/version" | cut -c2-)
+  frontend=$(curl -sb --request GET "$url/webapp-version" | cut -c2-)
+
+  echo "[-] $url"
+  echo "Backend ...... : $backend"
+  echo "Frontend ..... : $frontend"
+
+  exit 2
+}
+
+# Option strings
+SHORT=d:s:p:h
+LONG=dev:,stage:,prod:,help
+
+# OPTS=$(getopt --options $SHORT --long $LONG --name "$0" -- "$@")
+
+# if [ $? != 0 ] ; then echo "Failed to parse options...exiting." >&2 ; exit 1 ; fi
+
+# eval set -- "$OPTS"
+
+if ! OPTS=$(getopt -o $SHORT -l $LONG -- "$@")
+then
+    # something went wrong, getopt will put out an error message for us
+    exit 1
+fi
+
+# set -- $OPTS
+
+# extract options and their arguments into variables.
+# while [ $# -gt 0 ]; do
+
+#while getopt poka-versions --options $SHORT --long $LONG opt; do
+
+while getopts -o "d:s:p:h"; do
+  case "$1" in
+    -h | --help )
+      usage
+      ;;
+    -d | --dev )
+      display "$2" "poka.dev"
+      ;;
+    -s | --stage )
+      display "$2" "poka.work"
+      ;;
+    -p | --prod )
+      display "$2" "poka.io"
+      ;;
+    -- )
+      shift
+      break
+      ;;
+    *)
+      echo "Internal error! $opt $1 $2"
+      exit 1
+      ;;
+  esac
+done

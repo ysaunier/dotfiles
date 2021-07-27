@@ -65,7 +65,7 @@ ZSH_CUSTOM=$DOTFILES
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose)
+plugins=(git docker docker-compose zsh-autosuggestions)
 
 # Activate Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
@@ -99,17 +99,101 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# prompt_context() {
+#     if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+#       prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+#     fi
+# }
+
 prompt_context() {
     if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-      prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+        prompt_segment 4 255
+        print -Pn "$(basename $USER)"
     fi
 }
 
+prompt_assumed_role() {
+    # See: https://github.com/ohmyzsh/ohmyzsh/blob/c66d8a841d231895be37721220f23b537d90c5a5/themes/agnoster.zsh-theme#L246
+    if [[ -n $ASSUMED_ROLE ]]; then
+        if [[ $ASSUMED_ROLE == *"prod"* ]]; then
+            color=124
+            aws_env="prod"
+        elif [[ $ASSUMED_ROLE == *"stage"* ]]; then
+            color=208
+            aws_env="stage"
+        else
+            color=34
+            aws_env="dev"
+        fi
+        prompt_segment $color 255
+        print -Pn "$(basename $aws_env)"
+    fi
+}
+
+prompt_aws_profile() {
+    if [[ -n $AWS_PROFILE ]]; then
+        if [[ $AWS_PROFILE == *"prod"* ]]; then
+            color=1
+            aws_profile="prod"
+        elif [[ $AWS_PROFILE == *"stage"* ]]; then
+            color=3
+            aws_profile="stage"
+        else
+            color=2
+            aws_profile="dev"
+        fi
+        prompt_segment 93 255
+        print -Pn "$(basename profile:$aws_profile)"
+    fi
+}
+
+prompt_aws_details() {
+    if [[ -n $AWS_PROFILE ]]; then
+        if [[ $AWS_PROFILE == *"prod"* ]]; then
+            aws_profile="prod"
+        elif [[ $AWS_PROFILE == *"stage"* ]]; then
+            aws_profile="stage"
+        else
+            aws_profile="dev"
+        fi
+    fi
+    if [[ -n $AWS_DEFAULT_REGION ]]; then
+        aws_region=$AWS_DEFAULT_REGION
+    fi
+
+    if [[ -n $aws_profile ]] && [[ -n $aws_region ]]; then
+        info="$aws_profile:$aws_region"
+        prompt_segment 93 255
+        print -Pn "$(basename $info)"
+    elif [[ -n $aws_profile ]]; then
+        prompt_segment 93 255
+        print -Pn "$(basename $aws_profile)"
+    elif [[ -n $aws_region ]]; then
+        prompt_segment 93 255
+        print -Pn "$(basename $aws_region)"
+    fi
+}
+
+prompt_color_test() {
+    for a in {0..255}; do
+        prompt_segment $a 0
+        print -Pn "$(basename $a)"
+    done
+}
+
+
+
 build_prompt() {
-    # RETVAL=$?
-    # prompt_status
+    RETVAL=$?
+    prompt_status
+    prompt_virtualenv
     prompt_context
+    prompt_assumed_role
+    prompt_aws_details
     prompt_dir
     prompt_git
+    prompt_bzr
+    prompt_hg
+    # prompt_color_test
     prompt_end
 }
