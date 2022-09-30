@@ -4,3 +4,4 @@ extra.zsh
 Brewfile.lock.json
 
 plugins/*
+themes/*

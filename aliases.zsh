@@ -94,6 +94,12 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 # Show how much diskspace I got left (shouldn't have bought that puny 128GB MBA...)
 alias diskspace="df -P -kHl"
 
+# Run GUI Datadog Agent
+alias ddog="datadog-agent launch-gui"
+
+alias poka_dev_tests="TEST_DATABASE_MIGRATION_CHECK=True py.test -n auto --runslow --randomly-dont-reset-seed  --disable-warnings --ds=settings.test_psql -x tests"
+alias pdt="poka_dev_tests"
+
 # MISC
 alias holdmybeer=sudo
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
@@ -101,6 +107,7 @@ alias tableflip="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 
 # Functions
 weather() { curl -4 fr.wttr.in/${1:-quebec} }
+tobase64() { echo "$1" | base64 | tr -d '\n' | tr -d ';' | pbcopy }
 
 # Determine size of a file or total size of a directory
 function fs() {
@@ -114,4 +121,12 @@ function fs() {
     else
         du $arg .[^.]* ./*;
     fi;
+}
+
+function poka_find_url() {
+    ./manage.py show_urls --settings=settings.dev | grep -i '/api/v2.2/' |  grep -i $1
+}
+
+function docker-bash() {
+    docker exec -it $1 bash
 }

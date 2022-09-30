@@ -1,0 +1,42 @@
+#!/bin/sh
+
+case $1 in
+    dev)
+        _aws_profile=poka-dev-user
+        ;;
+    stage)
+        _aws_profile=poka-stage-user
+        ;;
+    prod)
+        _aws_profile=poka-prod-user
+        ;;
+    *)
+        echo Error:: chose between dev, stage, prod
+        exit 1
+        ;;
+esac
+
+case $2 in
+    us)
+        _aws_region="us-east-1"
+        ;;
+    ca)
+        _aws_region="ca-central-1"
+        ;;
+    eu)
+        _aws_region="eu-central-1"
+        ;;
+    *)
+        echo Error:: chose between us, ca, eu
+        exit 1
+        ;;
+esac
+
+echo "AWS $_aws_profile | $_aws_region"
+
+export AWS_PROFILE=$_aws_profile
+export AWS_DEFAULT_REGION=$_aws_region
+
+echo "\nexport AWS_PROFILE=$_aws_profile\nexport AWS_DEFAULT_REGION=$_aws_region" | pbcopy
+
+aws sso login --profile $_aws_profile

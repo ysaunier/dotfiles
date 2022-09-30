@@ -1,6 +1,9 @@
 # Load Node global installed binaries
 export PATH="$HOME/.node/bin:$PATH"
 
+# Use ruby global installed
+export PATH=/usr/local/Cellar/ruby/3.0.2/bin:$PATH
+
 # Use project specific binaries before global ones
 export PATH="node_modules/.bin:vendor/bin:$PATH"
 
@@ -29,7 +32,7 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 
 # Abort installation of a cask if no checksum is defined
-export HOMEBREW_CASK_OPTS=--require-sha
+# export HOMEBREW_CASK_OPTS=--require-sha
 
 # Python
 VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
