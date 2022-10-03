@@ -5,10 +5,10 @@ case $1 in
         _aws_profile=poka-dev-user
         ;;
     stage)
-        _aws_profile=poka-stage-user
+        _aws_profile=poka-stage-REGION-engineeringrequest
         ;;
     prod)
-        _aws_profile=poka-prod-user
+        _aws_profile=poka-prod-REGION-engineeringrequest
         ;;
     *)
         echo Error:: chose between dev, stage, prod
@@ -31,6 +31,8 @@ case $2 in
         exit 1
         ;;
 esac
+
+_aws_profile=${_aws_profile//REGION/$_aws_region}
 
 echo "AWS $_aws_profile | $_aws_region"
 
