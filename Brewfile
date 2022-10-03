@@ -23,6 +23,7 @@ brew 'tree'             # to display directories tree
 brew 'wget'
 brew 'zsh'              # has to be installed before installing Oh My Zsh
 brew 'zsh-completions'  # more auto-completions for Zsh
+brew 'colordiff'        # like diff but with color
 
 # Development
 brew 'bfg'              # for that time the intern added passwords to the repo

@@ -22,15 +22,42 @@ alias reload="source ~/.zshrc"
 # Restart the computer
 alias restart="sudo shutdown -r now"
 
+## Colorize the ls output ##
+alias ls='ls --color=auto'
+
+## Use a long listing format ##
+alias ll='ls -la'
+
+## Show hidden files ##
+alias l.='ls -d .* --color=auto'
+
 # Navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias code="cd ~/Code;pwd"
+## get rid of command not found ##
+alias cd..='cd ..'
+## a quick way to get out of current directory ##
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias ....='cd ../../../../'
+alias .....='cd ../../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../..'
+alias projects="cd ~/projects;pwd"
 alias dl='cd ~/Downloads'
-alias dotfiles="cd $DOTFILES"
-alias icloud='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/;pwd'
-alias library="cd $HOME/Library"
-alias www='cd ~/Code;pwd'
+alias df="cd $DOTFILES"
+alias cdaws="cd ~/.aws"
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias calc='bc -l'
+alias mkdir='mkdir -pv'
+alias diff='colordiff'
+
+# handy short cuts #
+alias h='history|grep '
+alias j='jobs -l'
 
 # Application launchers
 alias cat='bat'
@@ -87,6 +114,16 @@ alias ifactive="ifconfig | pcregrep -M -o '^[^\t:]+:([^\n]|\n\t)*status: active'
 
 # Flush Directory Service (DNS) cache
 alias flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
+
+alias ports='netstat -tulanp'
+
+## get top process eating memory
+alias psmem='ps aux | sort -nr -k 4'
+alias psmem10='ps aux | sort -nr -k 4 | head -10'
+
+## get top process eating cpu ##
+alias pscpu='ps aux | sort -nr -k 3'
+alias pscpu10='ps aux | sort -nr -k 3 | head -10'
 
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
