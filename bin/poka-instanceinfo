@@ -1,9 +1,0 @@
-#!/bin/bash
-
-instanceinfo()
-{
-  instance=$1
-
-  echo "Usage: poka-versions [ -d | --dev ] [ -s | --stage ] [ -p | --prod ] instance"
-  exit 2
-}

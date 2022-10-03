@@ -145,6 +145,8 @@ alias tableflip="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 # Functions
 weather() { curl -4 fr.wttr.in/${1:-quebec} }
 tobase64() { echo "$1" | base64 | tr -d '\n' | tr -d ';' | pbcopy }
+pokabe() { curl -s -f -X GET "https://$1/api/v2.3/public/server-info/?fields=backend_version" | jq '.backend_version' | cut -d '"' -f 2 }
+pokainfo() { curl -s -f -X GET "https://$1/api/v2.3/public/server-info/?fields=backend_version,client_code,environment,tenant_code,tenant_id" | jq }
 
 # Determine size of a file or total size of a directory
 function fs() {
