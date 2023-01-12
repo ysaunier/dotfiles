@@ -157,7 +157,7 @@ prompt_aws_details2() {
             local aws_profile="stage"
             background_color="orange"
         else
-            local aws_profile="dev"            
+            local aws_profile="dev"
         fi
     fi
     if [[ -n $AWS_DEFAULT_REGION ]]; then
