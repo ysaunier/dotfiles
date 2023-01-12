@@ -36,11 +36,11 @@ alias l.='ls -d .* --color=auto'
 alias cd..='cd ..'
 ## a quick way to get out of current directory ##
 alias ..='cd ..'
-alias ...='cd ../../../'
-alias ....='cd ../../../../'
-alias .....='cd ../../../../'
-alias .4='cd ../../../../'
-alias .5='cd ../../../../..'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .54='cd ../../../../'
+alias .65='cd ../../../../../'
+alias .76='cd ../../../../../../'
 alias projects="cd ~/projects;pwd"
 alias dl='cd ~/Downloads'
 alias df="cd $DOTFILES"
