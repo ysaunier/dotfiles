@@ -105,6 +105,7 @@ cask 'webpquicklook'    # preview Webp images
 
 # Fonts
 cask 'font-fira-code'
+brew 'figlet'		# Fun title http://www.figlet.org/
 
 # Install Mac App Store apps
 mas '1Password', id: 1333542190         # password manager
@@ -113,8 +114,8 @@ mas 'Bear', id: 1091189122              # note taking app
 mas 'stts', id: 1187772509              # stts, for checking many App Status
 # mas 'Deliveries', id: 924726344       # package tracking
 # mas 'Kaleidoscope', id: 587512244     # the best difftool ever, fight me
-# mas 'Next Meeting', id: 1017470484    # See what meeting is up next, right in the status bar
-# mas 'Pastebot', id: 1179623856
+mas 'Next Meeting', id: 1017470484      # See what meeting is up next, right in the status bar
+mas 'Pastebot', id: 1179623856
 # mas 'Pixelmator', id: 407963104
 # mas 'Reeder', id: 880001334           # nope, RSS is not dead
 # mas 'Soulver', id: 413965349
