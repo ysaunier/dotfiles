@@ -131,11 +131,26 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 # Show how much diskspace I got left (shouldn't have bought that puny 128GB MBA...)
 alias diskspace="df -P -kHl"
 
+# Setup python venv
+# alias venv='python3 -m venv .venv && . .venv/bin/activate && python3 -m pip install -q --upgrade pip'
+function venv() { 
+    echo $1
+    return
+    python3 -m venv .venv --prompt $1 
+    . .venv/bin/activate
+    python3 -m pip install -q --upgrade pip 
+}
+
 # Run GUI Datadog Agent
 alias ddog="datadog-agent launch-gui"
 
 alias poka_dev_tests="TEST_DATABASE_MIGRATION_CHECK=True py.test -n auto --runslow --randomly-dont-reset-seed  --disable-warnings --ds=settings.test_psql -x tests"
 alias pdt="poka_dev_tests"
+
+function poka_set_users() {
+  local _query="UPDATE auth_user SET password='pbkdf2_sha256\$260000\$cXUbGLmKG78vfGkQeDLiv3\$iFWq5QiElTjEXyFVxLAJJ7VV8zucMUnH7I0DDHNKnOc=' WHERE username!='arusso'"
+  psql --host=localhost --username=poka_dev -c "$_query"
+}
 
 # MISC
 alias holdmybeer=sudo
@@ -145,8 +160,13 @@ alias tableflip="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
 # Functions
 weather() { curl -4 fr.wttr.in/${1:-quebec} }
 tobase64() { echo "$1" | base64 | tr -d '\n' | tr -d ';' | pbcopy }
-pokabe() { curl -s -f -X GET "https://$1/api/v2.3/public/server-info/?fields=backend_version" | jq '.backend_version' | cut -d '"' -f 2 }
-pokainfo() { curl -s -f -X GET "https://$1/api/v2.3/public/server-info/?fields=backend_version,client_code,environment,tenant_code,tenant_id" | jq }
+pokabe() { curl -s -f -X GET "$1/api/v2.3/public/server-info/?fields=backend_version" | jq '.backend_version' | cut -d '"' -f 2 }
+pokafe() { curl -s -f -X GET "$1/webapp-version" | cut -f 1 }
+pokainfo() { curl -s -f -X GET "$1/api/v2.3/public/server-info/?fields=backend_version,client_code,environment,tenant_code,tenant_id" | jq }
+
+function pokasso() {
+  eval $(~/.dotfiles/bin/pokaco $1 $2)
+}
 
 # Determine size of a file or total size of a directory
 function fs() {
@@ -163,7 +183,7 @@ function fs() {
 }
 
 function poka_find_url() {
-    ./manage.py show_urls --settings=settings.dev | grep -i '/api/v2.2/' |  grep -i $1
+    ./manage.py show_urls --settings=settings.dev | grep -i '/api/v2.3/' |  grep -i $1
 }
 
 function docker-bash() {
