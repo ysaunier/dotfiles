@@ -1,44 +1,43 @@
 #!/bin/sh
 
 case $1 in
-    dev)
-        _aws_profile=poka-dev-user
-        ;;
-    stage)
-        _aws_profile=poka-stage-REGION-engineeringrequest
-        ;;
-    prod)
-        _aws_profile=poka-prod-REGION-engineeringrequest
-        ;;
+    dev)          _aws_profile=poka-dev-user                        ;;
+    stage)        _aws_profile=poka-stage-REGION-engineeringrequest ;;
+    prod)         _aws_profile=poka-prod-REGION-engineeringrequest  ;;
+    ci-dev)       _aws_profile=poka-ci-dev-REGION                   ;;
+    ci-stage)     _aws_profile=poka-ci-stage-REGION                 ;;
+    ci-prod)      _aws_profile=poka-ci-prod-REGION                  ;;
+    public-dev)   _aws_profile=poka-public-dev-REGION               ;;
+    public-stage) _aws_profile=poka-public-stage-REGION             ;;
+    public-prod)  _aws_profile=poka-public-prod-REGION              ;;
     *)
-        echo Error:: chose between dev, stage, prod
+        echo "[!] Error:: chose between dev|stage|prod|ci-dev|ci-stage|ci-prod|public-dev|public-stage|public-prod"
         exit 1
         ;;
 esac
 
 case $2 in
-    us)
-        _aws_region="us-east-1"
-        ;;
-    ca)
-        _aws_region="ca-central-1"
-        ;;
-    eu)
-        _aws_region="eu-central-1"
-        ;;
+    us)   _aws_region="us-east-1"     ;;
+    us2)  _aws_region="us-east-2"     ;;
+    usw1) _aws_region="us-west-1"     ;;
+    usw2) _aws_region="us-west-2"     ;;
+    ca)   _aws_region="ca-central-1"  ;;
+    eu)   _aws_region="eu-central-1"  ;;
+    euw1) _aws_region="eu-west-1"     ;;
+    euw2) _aws_region="eu-west-2"     ;;
     *)
-        echo Error:: chose between us, ca, eu
+        echo "[!] Error:: chose between us|us2|usw1|usw2|ca|eu|euw1|euw2"
         exit 1
         ;;
 esac
 
 _aws_profile=${_aws_profile//REGION/$_aws_region}
 
-echo "AWS $_aws_profile | $_aws_region"
-
 export AWS_PROFILE=$_aws_profile
 export AWS_DEFAULT_REGION=$_aws_region
+aws sso login --profile $_aws_profile > /dev/null
 
 echo "\nexport AWS_PROFILE=$_aws_profile\nexport AWS_DEFAULT_REGION=$_aws_region" | pbcopy
 
-aws sso login --profile $_aws_profile
+echo export AWS_PROFILE=$_aws_profile
+echo export AWS_DEFAULT_REGION=$_aws_region
