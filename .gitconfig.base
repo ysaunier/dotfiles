@@ -111,8 +111,6 @@
 	gpgsign = true
 [user]
 	signingkey = <REPLACE_IT>
-	name = ysaunier
-	email = <REPLACE_IT>
 
 [pull]
 	rebase = false
