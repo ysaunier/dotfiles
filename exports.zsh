@@ -52,3 +52,7 @@ eval "$(pyenv virtualenv-init -)"
 # NVM
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
+
+for submodule in "${DOTFILES_SUBMODULES[@]}"; do
+    [[ ! -f "$submodule/exports.zsh" ]] || source "$submodule/exports.zsh"
+done

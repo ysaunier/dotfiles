@@ -7,12 +7,19 @@ if test ! $(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
+# Get the list of submodules from .gitmodules
+DOTFILES_SUBMODULES=$(git submodule status | cut -d ' ' -f 3)
+
 # Update Homebrew recipes
 brew update
 
 # Install all our dependencies with bundle (See Brewfile)
 brew tap homebrew/bundle
 brew bundle
+
+for submodule in "${DOTFILES_SUBMODULES[@]}"; do
+  [[ ! -f "$submodule/Brewfile" ]] || brew bundle --file="$submodule/Brewfile"
+done
 
 # Install Oh My ZSH
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -37,6 +44,9 @@ ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
 # Symlink the Mackup config file to the home directory
 ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
+
+# Build gitconfig
+cp $HOME/.dotfiles/.gitconfig.base $HOME/.dotfiles/.gitconfig
 
 # Set my global git configs
 rm $HOME/.gitconfig

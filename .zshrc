@@ -82,42 +82,14 @@ plugins=(git docker docker-compose zsh-autosuggestions)
 # Activate Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Get the list of submodules from .gitmodules
+DOTFILES_SUBMODULES=$(git submodule status | cut -d ' ' -f 3)
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-# prompt_context() {
-#     if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-#         prompt_segment 4 255
-#         print -Pn "$(basename $USER)"
-#     fi
-# }
+# Include scripts in Bin
+export PATH=$HOME/.dotfiles/bin:$PATH
+for submodule in "${DOTFILES_SUBMODULES[@]}"; do
+    [[ ! -d "$HOME/.dotfiles/$submodule/bin" ]] || export PATH=$HOME/.dotfiles/$submodule/bin:$PATH
+done
 
 prompt_assumed_role() {
     # See: https://github.com/ohmyzsh/ohmyzsh/blob/c66d8a841d231895be37721220f23b537d90c5a5/themes/agnoster.zsh-theme#L246
@@ -335,3 +307,8 @@ prompt_color_test() {
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+for submodule in "${DOTFILES_SUBMODULES[@]}"; do
+    [[ ! -f "$submodule/.zshrc" ]] || source "$submodule/.zshrc"
+    [[ ! -f "$submodule/.p10k.zsh" ]] || source "$submodule/.p10k.zsh"
+done

@@ -5,3 +5,5 @@ Brewfile.lock.json
 
 plugins/*
 themes/*
+
+.gitconfig

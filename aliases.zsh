@@ -189,3 +189,7 @@ function poka_find_url() {
 function docker-bash() {
     docker exec -it $1 bash
 }
+
+for submodule in "${DOTFILES_SUBMODULES[@]}"; do
+    [[ ! -f "$submodule/aliases.zsh" ]] || source "$submodule/aliases.zsh"
+done
