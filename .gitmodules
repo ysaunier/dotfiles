@@ -1,0 +1,3 @@
+[submodule "poka-dotfiles"]
+	path = poka-dotfiles
+	url = git@github.com:ysaunier/poka-dotfiles.git
