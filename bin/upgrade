@@ -1,0 +1,32 @@
+#!/bin/sh
+
+if ! command -v brew &> /dev/null
+then
+    echo -e "[E] $(fgRed 'Brew not installed.')"
+    exit 1
+fi
+
+header () {
+  clear
+  if command -v figlet &> /dev/null
+  then
+      figlet -f drpepper "Brew Upgrade"
+      echo ""
+  fi
+}
+
+
+header
+
+echo "[ ] Brew updating..."
+brew update -q
+echo "[ ] Brew reach the outdated list..."
+arrInstalledApps=($(brew outdated | sort -V))
+echo " "
+PS3="[Q] Upgrade [number] : "
+select selectedVersion in "${arrInstalledApps[@]}"
+do
+  echo "[ ] Running `brew upgrade $selectedVersion`..."
+  brew upgrade $selectedVersion
+  break
+done
