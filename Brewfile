@@ -80,7 +80,7 @@ cask 'ksdiff'           # CLI launcher for my difftool (Kaleidoscope)
 cask 'slack'
 cask 'spectacle'        # no better ways to move windows around
 cask 'sublime-text'
-cask 'zoomus'
+cask 'zoom'
 cask 'visual-studio-code'
 cask 'ngrok'
 
