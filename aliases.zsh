@@ -1,3 +1,7 @@
+# Custom CLIs
+export PYTHONPATH="~/projects/documentation/todo:${PYTHONPATH}"
+alias todo='~/projects/documentation/.venv/bin/python3 -m todo'
+
 # Edit my zsh configs in Sublime
 alias zshconfig="subl ~/.dotfiles/.zshrc"
 
