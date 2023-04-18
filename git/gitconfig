@@ -1,0 +1,213 @@
+[init]
+  defaultBranch = main
+
+[alias]
+    # View abbreviated SHA, description, and history graph of the latest commits
+    l = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    la = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    lg = log --graph --stat --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%n' --all
+
+    # View the current working tree status using the short format
+    s = status -s
+
+    # Show the diff between the latest commit and the current state
+    d = !"git diff-index --quiet HEAD -- || clear; git diff --patch-with-stat"
+
+    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+    # Pull in remote changes for the current repository and all its submodules
+    pall = !"git pull; git submodule foreach git pull origin master"
+
+    # Fetch and Pull remote changes
+    fp = !"git fetch origin; git pull"
+
+    # Clone a repository including all submodules
+    c = clone --recursive
+
+    # Commit all changes
+    ca = !git add -A && git commit -av
+
+    # Switch to a branch, creating it if necessary
+    go = checkout -B
+
+    # Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
+
+    # Push changes on server
+    poh = push -u origin HEAD
+
+    # Create new branch
+    cob = checkout -b
+
+    # Move on a branch
+    # co = checkout -B
+    co = "! fn() { git fetch --all; git checkout $1; git pull; }; fn"
+
+    # create commit with message
+    cm = commit -m
+
+    # Revert changes
+    undo = reset --hard origin/master
+
+    # Create delta with the last version tag
+    rnotes = "! fn() { git fetch --all; git log $(git describe --tags --abbrev=0 origin/master)..origin/master --format=\"- %s\"; }; fn"
+
+    # Show the last 10 branches worked on, sorted by last updated
+    br = for-each-ref --sort=-committerdate --count=10 refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+    # Credit an author on the latest commit
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+
+    # Interactive rebase with the given number of latest commits
+    reb = "!r() { git rebase -i HEAD~$1; }; r"
+
+    # Sign commit
+    ci = commit -S
+
+    # Check the last commit and show the signature
+    last = log -1 HEAD --show-signature
+
+    # There's fire everwhere, everything is *not* fine and you have to save your local changes
+    yolo = !git add -A && git commit -m \"$(curl --silent --fail https://whatthecommit.com/index.txt)\"
+
+    # Shortcut to diff staged and unstaged code
+    dt = !git difftool
+    dc = !git diff --cached
+    dtc = !git difftool --cached
+
+    # For those times you just have to pat someone on the back
+    fame = python --version -m gitfame
+
+    # View abbreviated SHA, description, and history graph
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    branch-name = rev-parse --abbrev-ref HEAD
+    parent = "!git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//' #"
+    set-upstream = "! fn() { BNAME=$(git branch-name); git branch --set-upstream-to="origin/$BNAME" "$BNAME"; }; fn"
+    # alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    branch-clean = "! fn() { git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done; }; fn"
+    blog = log --graph --decorate --oneline
+    delete-local-branches = ! git remote update --prune | git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+    dlb = delete-local-branches
+
+[apply]
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+
+[core]
+    # Use custom `.gitignore` and `.gitattributes`
+    excludesfile = ~/.dotfiles/.gitignore_global
+    attributesfile = ~/.gitattributes
+
+    # Treat spaces before tabs, lines that are indented with 8 or more spaces, and
+    # all kinds of trailing whitespace as an error.
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of
+    # a line
+    whitespace = space-before-tab,trailing-space
+
+    editor = vim
+    pager = delta
+    autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only
+
+[color]
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+    ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[merge]
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+    tool = Kaleidoscope
+    ff = false
+    conflictstyle = diff3
+
+# URL shorthands
+[url "git@github.com:"]
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+    insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+    insteadOf = "gist:"
+
+[push]
+    default = matching
+
+[help]
+    autocorrect = 5
+
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustexitcode = true
+
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[difftool]
+    prompt = false
+
+[mergetool]
+    prompt = false
+    keepBackup = false
+
+[diff]
+    tool = Kaleidoscope
+    colorMoved = default
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+    side-by-side = true
+
+[pull]
+    rebase = false
+
+[rebase]
+    autoStash = true
+
+[credential]
+    helper = osxkeychain
+
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+
+[commit]
+    gpgsign = true
+
+[user]
+	signingkey = 5B461B11916E6ED2
+	name = ysaunier
+	email = ysaunier@poka.io

@@ -1,0 +1,146 @@
+# Taps
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'       # for Fira Code and a patched font for vim/neovim
+tap 'homebrew/cask-versions'    # for alternate versions of Casks
+tap 'eddieantonio/eddieantonio' # for imgcat
+tap 'remind101/formulae'        # for assume-role
+tap 'homebrew/cask-drivers'     # to flash my Moonlander keyboard firmware
+tap 'wpscanteam/tap'            # for wpscan
+tap 'yqrashawn/goku'            # For Goku
+
+# Install Binaries
+brew 'bat'              # like 'cat', with highlighting, git support and pagination
+brew 'coreutils'        # Those that come with macOS are outdated
+brew 'curl'
+brew 'docker-compose'   # Docker without the hassle
+brew 'fzf'              # Fuzzy search
+brew 'gawk'             # Like awk, but with a g. Not to be confused with the large bird of prey
+brew 'git-delta'        # Provides much better diffs highlighting in the terminal
+brew 'gnu-sed'          # sed, but a better version than what ships with OSX
+brew 'graphviz'         # graph/diagrams generation
+brew 'htop'
+brew 'httpie'           # to test HTTP calls from the CLI
+brew 'imgcat'           # like 'cat', but for images
+brew 'jq'               # When you want to manipulate JSON piped from httpie
+brew 'mackup'           # to sync my Mac configs
+brew 'mas'              # to install Mac App Store apps from the CLI
+brew 'neofetch'
+brew 'ripgrep'
+brew 'starship'         # a minimalist CLI prompt
+brew 'telnet'
+brew 'tldr'             # like 'man' but for lazy people with deadlines
+brew 'tmux'
+brew 'tmuxinator'
+brew 'tokei'            # to quickly count lines of code, like cloc, but faster
+brew 'tree'             # to display directories tree
+brew 'wget'
+brew 'zsh'              # has to be installed before installing Oh My Zsh
+brew 'zsh-completions'  # more auto-completions for Zsh
+brew 'colordiff'        # like diff but with color
+
+# Development
+brew 'bfg'              # for that time the intern added passwords to the repo
+brew 'exercism'         # to submit code solutions to Exercism.io
+brew 'gh'               # GitHub on the CLI
+brew 'git'              # OSX's version is out of date
+brew 'git-lfs'          # git's large file system
+
+# Productivity and automation (see: https://tighten.com/blog/how-to-train-your-keyboard/)
+cask 'karabiner-elements'   # Remap keys and shortcuts at the kernel level
+cask 'hammerspoon'          # Take Karabiner's shortcuts and make the magic happen
+brew 'yqrashawn/goku/goku'  # Manage Karabiner configs with ease
+
+# Tools for work
+brew 'assume-role'
+brew 'awscli'
+cask 'session-manager-plugin'
+brew 'gettext'      # to compile messages, don't forget to link!
+brew 'libjpeg'
+brew 'libmagic'
+brew 'libmaxminddb' # for GeoIP
+brew 'libpng'
+brew 'libpq', link: true
+brew 'node@14'
+brew 'python'
+brew 'pipenv'
+brew 'pyenv'
+
+# Pentesting / CTF / Forensics
+brew 'binwalk'          # search for files hidden via steganography
+brew 'exiftool'         # reading and writing EXIF metadata
+brew 'exiv2'            # EXIF and IPTC metadata
+brew 'ffmpeg'
+brew 'foremost'         # file recovery based on headers/footer (forensics)
+brew 'hashcat'          # GPU password cracking
+brew 'john-jumbo'       # John the ripper
+brew 'gdb'              # the basic Binjitsu weapon
+brew 'pngcheck'
+brew 'sqlmap'           # SQL injection
+brew 'wpscan'           # WordPress vulnerability scanner
+brew 'zbar'             # barcode /qrcode reading
+cask 'hex-fiend'        # a simple GUI hex editor
+
+# Apps
+cask '1password'
+cask 'alfred'
+cask 'anki'             # flash cards, for learning and memorization (active recall, spaced repetition, etc)
+cask 'caffeine'         # when I don't want my computer to fall asleep
+cask 'cleanshot'		# Gorgeous, expansive (and expensive!) screeshot app
+cask 'dash'             # offline docs and code snippets FTW!
+cask 'deckset'          # slide decks for conference talks
+cask 'docker'
+# cask 'fellow'			# To track my work meetings
+cask 'firefox'
+cask 'google-chrome'
+cask 'gpg-suite'
+cask 'grammarly'
+cask 'hiddenbar'        # keep my statusbar tidy
+cask 'imagealpha'       # optimize transparent PNGs
+cask 'imageoptim'       # optimize images
+cask 'insomnia'         # a nice API client GUI
+cask 'intellij-idea'
+cask 'kaleidoscope2'
+cask 'iterm2'           # a better terminal
+cask 'keybase'
+cask 'keycastr'         # when pairing remotely, to show all keypresses in vim/neovim
+cask 'kitty'
+cask 'ksdiff'           # CLI launcher for my difftool (Kaleidoscope)
+cask 'ngrok'
+cask 'obsidian'
+cask 'slack'
+cask 'spectacle'        # no better ways to move windows around
+cask 'sublime-text'
+cask 'zoom'
+cask 'zsa-wally'        # to flash my Moonlander keyboard firmware
+cask 'visual-studio-code'
+
+# Gaming
+# cask 'battle-net'
+# cask 'discord'
+
+# Music
+cask 'spotify'
+
+# Quicklook
+cask 'betterzip'        # preview zip archives
+cask 'epubquicklook'    # preview zip archives
+cask 'qlcolorcode'      # preview source code files with syntax highlighting
+cask 'qlimagesize'      # display image size and resolution
+cask 'qlmarkdown'       # preview Markdown files
+cask 'qlprettypatch'    # preview diff patches
+cask 'quicklook-json'   # preview JSON files
+cask 'quicklook-csv'    # preview CSV files
+cask 'qlstephen'        # preview plain text files without or with unknown file extension
+cask 'webpquicklook'    # preview Webp images
+
+# Fonts
+cask 'font-fira-code'
+brew 'figlet'		# Fun title http://www.figlet.org/
+cask 'font-hack-nerd-font'    # This font adds support for nice icons in NerdTree/NVIMTREE
+
+# Install Mac App Store apps
+mas 'Annotate', id: 918207447       # annotate screenshots like a boss
+mas 'stts', id: 1187772509          # stts, for checking many App Status
+mas 'Next Meeting', id: 1017470484  # See what meeting is up next, right in the status bar
+mas 'Pastebot', id: 1179623856
+mas 'RunCat', id: 1429033973        # see usage of the CPU with a Cat annimation

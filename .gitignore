@@ -1,9 +1,11 @@
-# To add git credentials, custom commands, private aliases, etc.
-extra.zsh
-
 Brewfile.lock.json
+.luarc.json
+
+vim/plugin
+
+# To add git credentials, custom commands, private aliases, etc.
+zsh/extra.zsh
+zsh/plugins
 
 plugins/*
 themes/*
-
-.gitconfig
