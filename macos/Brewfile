@@ -34,9 +34,6 @@ brew 'tmuxinator'
 brew 'tokei'            # to quickly count lines of code, like cloc, but faster
 brew 'tree'             # to display directories tree
 brew 'wget'
-brew 'zsh'              # has to be installed before installing Oh My Zsh
-brew 'zsh-completions'  # more auto-completions for Zsh
-brew 'colordiff'        # like diff but with color
 
 # Development
 brew 'bfg'              # for that time the intern added passwords to the repo
@@ -83,15 +80,15 @@ cask 'hex-fiend'        # a simple GUI hex editor
 # Apps
 cask '1password'
 cask 'alfred'
-cask 'anki'             # flash cards, for learning and memorization (active recall, spaced repetition, etc)
+# cask 'anki'             # flash cards, for learning and memorization (active recall, spaced repetition, etc)
 cask 'caffeine'         # when I don't want my computer to fall asleep
 cask 'cleanshot'		# Gorgeous, expansive (and expensive!) screeshot app
 cask 'dash'             # offline docs and code snippets FTW!
 cask 'deckset'          # slide decks for conference talks
 cask 'docker'
-# cask 'fellow'			# To track my work meetings
+cask 'fellow'			# To track my work meetings
 cask 'firefox'
-cask 'google-chrome'
+# cask 'google-chrome'
 cask 'gpg-suite'
 cask 'grammarly'
 cask 'hiddenbar'        # keep my statusbar tidy
@@ -107,7 +104,7 @@ cask 'kitty'
 cask 'ksdiff'           # CLI launcher for my difftool (Kaleidoscope)
 cask 'ngrok'
 cask 'obsidian'
-cask 'slack'
+# cask 'slack'
 cask 'spectacle'        # no better ways to move windows around
 cask 'sublime-text'
 cask 'zoom'
@@ -116,26 +113,21 @@ cask 'visual-studio-code'
 
 # Gaming
 # cask 'battle-net'
-# cask 'discord'
+cask 'discord'
 
 # Music
 cask 'spotify'
 
 # Quicklook
 cask 'betterzip'        # preview zip archives
-cask 'epubquicklook'    # preview zip archives
-cask 'qlcolorcode'      # preview source code files with syntax highlighting
 cask 'qlimagesize'      # display image size and resolution
 cask 'qlmarkdown'       # preview Markdown files
 cask 'qlprettypatch'    # preview diff patches
-cask 'quicklook-json'   # preview JSON files
 cask 'quicklook-csv'    # preview CSV files
-cask 'qlstephen'        # preview plain text files without or with unknown file extension
-cask 'webpquicklook'    # preview Webp images
 
 # Fonts
 cask 'font-fira-code'
-brew 'figlet'		# Fun title http://www.figlet.org/
+brew 'figlet'		          # Fun title http://www.figlet.org/
 cask 'font-hack-nerd-font'    # This font adds support for nice icons in NerdTree/NVIMTREE
 
 # Install Mac App Store apps

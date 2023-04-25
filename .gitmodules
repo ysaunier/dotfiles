@@ -5,8 +5,8 @@
 
 [submodule "git/submodules/dotbot-gh-extension"]
 	path = git/submodules/dotbot-gh-extension
-	url = https://github.com/fundor333/dotbot-gh-extension.git
+	url = https://github.com/fundor333/dotbot-gh-extension
 
-[submodule "poka-dotfiles"]
-	path = poka-dotfiles
-	url = git@github.com:ysaunier/poka-dotfiles.git
+[submodule "git/submodules/poka-dotfiles"]
+	path = git/submodules/poka-dotfiles
+	url = https://github.com/ysaunier/poka-dotfiles

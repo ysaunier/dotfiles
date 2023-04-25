@@ -51,6 +51,8 @@ alias projects="cd ~/projects;pwd"
 alias dl='cd ~/Downloads'
 alias df="cd $DOTFILES"
 alias cdaws="cd ~/.aws"
+alias library="cd $HOME/Library"
+alias www="cd ~/Code;pwd"
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -239,7 +241,6 @@ alias ta='tmux attach -t'
 alias tls='tmux list-sessions'
 alias tks='tmux kill-session -t'
 alias mux='tmuxinator'
-
 
 function poka_find_url() {
     ./manage.py show_urls --settings=settings.dev | grep -i '/api/v2.3/' |  grep -i $1

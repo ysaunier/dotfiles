@@ -208,6 +208,6 @@
     gpgsign = true
 
 [user]
-	signingkey = 5B461B11916E6ED2
+	signingkey = 8804D9890ADB2134
 	name = ysaunier
 	email = ysaunier@poka.io
