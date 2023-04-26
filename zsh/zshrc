@@ -5,6 +5,9 @@
 #   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # fi
 
+# Print debug messages if `true` else leave empty
+export DOTFILES_DEBUG=""
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -114,4 +117,11 @@ SAVEHIST=$HISTSIZE
 bindkey "\e[1;3D" backward-word # ⌥←
 bindkey "\e[1;3C" forward-word  # ⌥→
 
+# Customizable prompt
 eval "$(starship init zsh)"
+
+# Add Python versions installed with pyenv to the PATH
+eval "$(pyenv init --path)"
+
+# Initialize pyenv automatically by adding the following to ~/.zshrc:
+eval "$(pyenv init -)"

@@ -14,9 +14,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Load custom commands
 export PATH="$DOTFILES/bin:$PATH"
 
-# Add Python versions installed with pyenv to the PATH
-eval "$(pyenv init --path)"
-
 # Specify default editor. Possible values: vim, nano, code, ed etc.
 export EDITOR=code
 export VISUAL=code
@@ -36,6 +33,10 @@ export HOMEBREW_CASK_OPTS=--require-sha
 
 # For psycopg2, see: https://github.com/psycopg/psycopg2/issues/890
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include -I/opt/homebrew/include -L/opt/homebrew/lib"
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+if [[ -n "$DOTFILES_DEBUG" ]]; then
+    echo "[-] exports.zsh loaded"
+fi;

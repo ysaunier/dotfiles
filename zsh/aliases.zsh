@@ -1,7 +1,3 @@
-# Custom CLIs
-export PYTHONPATH="~/projects/documentation/todo:${PYTHONPATH}"
-alias todo='~/projects/documentation/.venv/bin/python3 -m todo'
-
 # Edit my zsh configs
 alias zshconfig='$EDITOR ~/.dotfiles/.zshrc'
 
@@ -23,7 +19,7 @@ alias hosts='sudo $EDITOR /etc/hosts'
 alias hostconf='$EDITOR ~/.ssh/config'
 
 # Reload my CLI configs
-alias reload="source ~/.zshrc"
+alias reload="source ~/.zshrc; echo 'ZSH reloaded.'"
 
 # Restart the computer
 alias restart="sudo shutdown -r now"
@@ -250,6 +246,6 @@ function docker-bash() {
     docker exec -it $1 bash
 }
 
-#for submodule in "${DOTFILES_SUBMODULES[@]}"; do
-#    [[ ! -f "$submodule/zsh/aliases.zsh" ]] || source "$submodule/zsh/aliases.zsh"
-#done
+if [[ -n "$DOTFILES_DEBUG" ]]; then
+    echo "[-] aliases.zsh loaded"
+fi;
