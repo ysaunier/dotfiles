@@ -59,6 +59,13 @@
     - description: Installing brew bundler
       command: "brew tap homebrew/bundle"
 
+    # Make sure we're using the right directories for the Dotfiles and ZSH
+    - description: Export DOTFILES variable for use in other scripts
+      command: "export DOTFILES=$HOME/.dotfiles"
+
+    - description: Export ZSH variable for use in other scripts
+      command: "export ZSH=$HOME/.oh-my-zsh"
+
     - description: Installing Brewfile bundle
       command: "brew bundle --file=macos/Brewfile"
       stdout: true
