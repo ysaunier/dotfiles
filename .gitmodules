@@ -7,6 +7,6 @@
 	path = git/submodules/dotbot-gh-extension
 	url = https://github.com/fundor333/dotbot-gh-extension
 
-[submodule "git/submodules/poka-dotfiles"]
-	path = git/submodules/poka-dotfiles
-	url = https://github.com/ysaunier/poka-dotfiles
+[submodule "git/submodules/poka"]
+	path = git/submodules/poka
+	url = git@github.com:ysaunier/poka-dotfiles.git
