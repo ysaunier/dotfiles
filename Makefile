@@ -12,4 +12,8 @@ clean:
 	git submodule foreach --recursive 'git clean -xdf'
 	git submodule foreach --recursive 'git reset --hard'
 
-.PHONY: submodules update clean
+# Run the install script
+install:
+	./install
+
+.PHONY: submodules update clean install
