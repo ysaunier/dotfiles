@@ -101,7 +101,6 @@ cask 'iterm2'           # a better terminal
 cask 'keybase'
 cask 'keycastr'         # when pairing remotely, to show all keypresses in vim/neovim
 cask 'kitty'
-cask 'ksdiff'           # CLI launcher for my difftool (Kaleidoscope)
 cask 'ngrok'
 cask 'obsidian'
 # cask 'slack'
