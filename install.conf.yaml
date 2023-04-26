@@ -1,3 +1,7 @@
+# See the documentation of https://github.com/anishathalye/dotbot for more info
+# submodules:
+#  - name: https://github.com/fundor333/dotbot-gh-extension
+
 - defaults:
     link:
         relink: true
@@ -14,7 +18,8 @@
 - clean: ['~']
 
 - create:
-    - ~/Code
+    - ~/.config
+    - ~/projects
     - ~/.tmux/plugins
     - ~/bin
     - ~/.config/karabiner/karabiner.json

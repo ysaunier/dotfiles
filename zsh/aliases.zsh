@@ -44,11 +44,11 @@ alias .54='cd ../../../../'
 alias .65='cd ../../../../../'
 alias .76='cd ../../../../../../'
 alias projects="cd ~/projects;pwd"
-alias dl='cd ~/Downloads'
-alias df="cd $DOTFILES"
+alias dl='cd ~/Downloads;pwd'
+alias df="cd $DOTFILES;pwd"
+alias poka="cd ~/projects/poka;pwd"
 alias cdaws="cd ~/.aws"
 alias library="cd $HOME/Library"
-alias www="cd ~/Code;pwd"
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
