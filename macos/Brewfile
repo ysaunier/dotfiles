@@ -99,7 +99,7 @@ cask 'insomnia'         # a nice API client GUI
 cask 'intellij-idea'
 cask 'kaleidoscope2'
 cask 'iterm2'           # a better terminal
-cask 'keybase'
+# cask 'keybase'
 cask 'keycastr'         # when pairing remotely, to show all keypresses in vim/neovim
 cask 'kitty'
 cask 'ngrok'
