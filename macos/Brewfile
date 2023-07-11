@@ -57,7 +57,8 @@ brew 'libmagic'
 brew 'libmaxminddb' # for GeoIP
 brew 'libpng'
 brew 'libpq', link: true
-brew 'node@14'
+brew 'node'
+brew 'nvm'
 brew 'python'
 brew 'pipenv'
 brew 'pyenv'

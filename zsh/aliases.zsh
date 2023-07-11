@@ -43,12 +43,14 @@ alias ....='cd ../../../'
 alias .54='cd ../../../../'
 alias .65='cd ../../../../../'
 alias .76='cd ../../../../../../'
-alias projects="cd ~/projects;pwd"
+
 alias dl='cd ~/Downloads;pwd'
 alias df="cd $DOTFILES;pwd"
-alias poka="cd ~/projects/poka;pwd"
 alias cdaws="cd ~/.aws"
 alias library="cd $HOME/Library"
+alias projects="cd $PROJECTS;pwd"
+alias poka="cd $PROJECTS/poka;pwd"
+alias instance-service="cd $PROJECTS/instance-service;pwd"
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -172,6 +174,7 @@ function poka_set_users() {
 alias holdmybeer=sudo
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias tableflip="echo '(╯°□°）╯︵ ┻━┻' | pbcopy"
+alias uuid="uuidgen | tr '[:upper:]' '[:lower:]' | pbcopy"
 
 # Functions
 weather() { curl -4 fr.wttr.in/${1:-"quebec city"} }

@@ -268,6 +268,18 @@
 #  docker exec poka-backend_redis redis-cli FLUSHALL
 #}
 #
+
+get_prompt_from_venv() {
+    local pyvenv_cfg=$VIRTUAL_ENV/pyvenv.cfg
+
+    if [ -f "$pyvenv_cfg" ]; then
+        local ini_content=$(cat "$pyvenv_cfg")
+        local prompt=$(echo "$ini_content" | grep prompt | cut -c 10-)
+        echo "$prompt"
+    fi
+}
+
+
 if [[ -n "$DOTFILES_DEBUG" ]]; then
     echo "[-] prompts.zsh loaded"
 fi;

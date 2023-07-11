@@ -1,35 +1,37 @@
 #!/bin/sh
 
 case $1 in
-    dev)          _aws_profile=poka-dev-user                        ;;
-    stage)        _aws_profile=poka-stage-REGION-engineeringrequest ;;
-    prod)         _aws_profile=poka-prod-REGION-engineeringrequest  ;;
-    ci-dev)       _aws_profile=poka-ci-dev-REGION                   ;;
-    ci-stage)     _aws_profile=poka-ci-stage-REGION                 ;;
-    ci-prod)      _aws_profile=poka-ci-prod-REGION                  ;;
-    public-dev)   _aws_profile=poka-public-dev-REGION               ;;
-    public-stage) _aws_profile=poka-public-stage-REGION             ;;
-    public-prod)  _aws_profile=poka-public-prod-REGION              ;;
+    dev)          _aws_profile=poka-dev-REGION                                       ;;
+    stage)        _aws_profile=poka-stage-REGION-engineeringrequest                  ;;
+    prod)         _aws_profile=poka-prod-REGION-engineeringrequest                   ;;
+    ci-dev)       _aws_profile=poka-ci-dev-us-east-1;_aws_region="us-east-1"         ;;
+    ci-stage)     _aws_profile=poka-ci-stage-us-east-1;_aws_region="us-east-1"       ;;
+    ci-prod)      _aws_profile=poka-ci-prod-us-east-1;_aws_region="us-east-1"        ;;
+    public-dev)   _aws_profile=poka-public-dev-us-east-1;_aws_region="us-east-1"     ;;
+    public-stage) _aws_profile=poka-public-stage-us-east-1;_aws_region="us-east-1"   ;;
+    public-prod)  _aws_profile=poka-public-prod-us-east-1;_aws_region="us-east-1"    ;;
     *)
         echo "[!] Error:: chose between dev|stage|prod|ci-dev|ci-stage|ci-prod|public-dev|public-stage|public-prod"
         exit 1
         ;;
 esac
 
-case $2 in
-    us)   _aws_region="us-east-1"     ;;
-    us2)  _aws_region="us-east-2"     ;;
-    usw1) _aws_region="us-west-1"     ;;
-    usw2) _aws_region="us-west-2"     ;;
-    ca)   _aws_region="ca-central-1"  ;;
-    eu)   _aws_region="eu-central-1"  ;;
-    euw1) _aws_region="eu-west-1"     ;;
-    euw2) _aws_region="eu-west-2"     ;;
-    *)
-        echo "[!] Error:: chose between us|us2|usw1|usw2|ca|eu|euw1|euw2"
-        exit 1
-        ;;
-esac
+if [ -z "$_aws_region" ]; then
+  case $2 in
+      us)   _aws_region="us-east-1"     ;;
+      us2)  _aws_region="us-east-2"     ;;
+      usw1) _aws_region="us-west-1"     ;;
+      usw2) _aws_region="us-west-2"     ;;
+      ca)   _aws_region="ca-central-1"  ;;
+      eu)   _aws_region="eu-central-1"  ;;
+      euw1) _aws_region="eu-west-1"     ;;
+      euw2) _aws_region="eu-west-2"     ;;
+      *)
+          echo "[!] Error:: chose between us|us2|usw1|usw2|ca|eu|euw1|euw2"
+          exit 1
+          ;;
+  esac
+fi
 
 _aws_profile=${_aws_profile//REGION/$_aws_region}
 

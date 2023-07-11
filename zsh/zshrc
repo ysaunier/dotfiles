@@ -17,6 +17,9 @@ export DOTFILES=$HOME/.dotfiles
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Path to your dotfiles installation.
+export PROJECTS=$HOME/Projects
+
 # Hide username in prompt
 DEFAULT_USER=`whoami`
 
@@ -125,3 +128,20 @@ eval "$(pyenv init --path)"
 
 # Initialize pyenv automatically by adding the following to ~/.zshrc:
 eval "$(pyenv init -)"
+
+# NVM_FILE=~/.nvm/nvm.sh
+# if [ -f "$NVM_FILE" ]; then
+#     source $NVM_FILE
+#     if [[ -n "$DOTFILES_DEBUG" ]]; then
+#         echo "[-] nvm loaded"
+#     fi;
+# fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+if [[ -n "$DOTFILES_DEBUG" ]]; then
+    echo "[-] zshhc loaded"
+fi;[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

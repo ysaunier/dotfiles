@@ -14,6 +14,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Load custom commands
 export PATH="$DOTFILES/bin:$PATH"
 
+# Define default starship config path
+export STARSHIP_CONFIG="$DOTFILES/starship/starship.toml"
+
 # Specify default editor. Possible values: vim, nano, code, ed etc.
 export EDITOR=code
 export VISUAL=code
@@ -34,6 +37,7 @@ export HOMEBREW_CASK_OPTS=--require-sha
 # For psycopg2, see: https://github.com/psycopg/psycopg2/issues/890
 export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include -I/opt/homebrew/include -L/opt/homebrew/lib"
+export PYCURL_SSL_LIBRARY=openssl
 
 export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
 
