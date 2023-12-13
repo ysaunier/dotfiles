@@ -4,6 +4,9 @@ case $1 in
     dev)          _aws_profile=poka-dev-REGION                                       ;;
     stage)        _aws_profile=poka-stage-REGION-engineeringrequest                  ;;
     prod)         _aws_profile=poka-prod-REGION-engineeringrequest                   ;;
+    stage+)        _aws_profile=poka-stage-REGION-developeroperations                ;;
+    prod+)         _aws_profile=poka-prod-REGION-developeroperations                 ;;
+
     ci-dev)       _aws_profile=poka-ci-dev-us-east-1;_aws_region="us-east-1"         ;;
     ci-stage)     _aws_profile=poka-ci-stage-us-east-1;_aws_region="us-east-1"       ;;
     ci-prod)      _aws_profile=poka-ci-prod-us-east-1;_aws_region="us-east-1"        ;;

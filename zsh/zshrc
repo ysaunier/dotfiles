@@ -145,3 +145,9 @@ export NVM_DIR="$HOME/.nvm"
 if [[ -n "$DOTFILES_DEBUG" ]]; then
     echo "[-] zshhc loaded"
 fi;[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+

@@ -165,8 +165,14 @@ alias ddog="datadog-agent launch-gui"
 alias poka_dev_tests="TEST_DATABASE_MIGRATION_CHECK=True py.test -n auto --runslow --randomly-dont-reset-seed  --disable-warnings --ds=settings.test_psql -x tests"
 alias pdt="poka_dev_tests"
 
+alias zuna='open https://us06web.zoom.us/j/81714938837\?pwd=ODRIbGhLTzBPK0NUdWt3K21KM2VFUT09'
+
 function poka_set_users() {
+  echo "Update users passwords"
   local _query="UPDATE auth_user SET password='pbkdf2_sha256\$260000\$cXUbGLmKG78vfGkQeDLiv3\$iFWq5QiElTjEXyFVxLAJJ7VV8zucMUnH7I0DDHNKnOc=' WHERE username!='arusso'"
+  psql --host=localhost --username=poka_dev -c "$_query"
+  echo "Return list of admins"
+  local _query="SELECT u.id, u.username, u.first_name, u.last_name, u.last_login, p.last_seen_on FROM auth_user u INNER JOIN userprofiles_userprofile p ON u.id = p.user_id WHERE u.is_active AND p.global_admin AND u.deleted_at is NULL AND NOT p.password_change_requested ORDER BY p.last_seen_on DESC LIMIT 10"
   psql --host=localhost --username=poka_dev -c "$_query"
 }
 
@@ -181,7 +187,7 @@ weather() { curl -4 fr.wttr.in/${1:-"quebec city"} }
 tobase64() { echo "$1" | base64 | tr -d '\n' | tr -d ';' | pbcopy }
 pokabe() { curl -s -f -X GET "$1/api/v2.3/public/server-info/?fields=backend_version" | jq '.backend_version' | cut -d '"' -f 2 }
 pokafe() { curl -s -f -X GET "$1/webapp-version" | cut -f 1 }
-pokainfo() { curl -s -f -X GET "$1/api/v2.3/public/server-info/?fields=backend_version,client_code,environment,tenant_code,tenant_id" | jq }
+pokainfo() { curl -s -f -X GET "$1/api/v2.3/public/server-info/?fields=region,backend_version,client_code,environment,tenant_code,tenant_id" | jq }
 
 function pokasso() {
   eval $(~/.dotfiles/bin/pokaco $1 $2)
@@ -247,6 +253,23 @@ function poka_find_url() {
 
 function docker-bash() {
     docker exec -it $1 bash
+}
+
+function pokapak() {
+
+    local POKA_API_KEY=$(
+    curl -s --request POST \
+  --url https://ysaunier.poka.dev/api/v2.3/authentication/login/ \
+  --header 'Accept: application/json' \
+  --header 'Accept-Language: en-US' \
+  --header 'Connection: keep-alive' \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"username": "ysaunier",
+	"password": "Qasuper1"
+}' | jq --raw-output '.api_key' )
+    echo "$POKA_API_KEY"
+    echo $POKA_API_KEY | pbcopy
 }
 
 if [[ -n "$DOTFILES_DEBUG" ]]; then

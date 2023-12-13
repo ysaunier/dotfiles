@@ -50,7 +50,11 @@
     cm = commit -m
 
     # Revert changes
-    undo = reset --hard origin/master
+;     undo = reset --hard origin/master
+;
+;     undomain = reset --hard origin/main
+;
+    undo = "!f() { ref=\"$(git symbolic-ref refs/remotes/origin/HEAD)\"; branch=\"$(basename \"$ref\")\"; reset --hard \"$branch\"; }; f"
 
     # Create delta with the last version tag
     rnotes = "! fn() { git fetch --all; git log $(git describe --tags --abbrev=0 origin/master)..origin/master --format=\"- %s\"; }; fn"
@@ -91,6 +95,7 @@
     blog = log --graph --decorate --oneline
     delete-local-branches = ! git remote update --prune | git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
     dlb = delete-local-branches
+    main = "!f() { ref=\"$(git symbolic-ref refs/remotes/origin/HEAD)\"; branch=\"$(basename \"$ref\")\"; git checkout \"$branch\"; git pull; }; f"
 
 [apply]
     # Detect whitespace errors when applying a patch
