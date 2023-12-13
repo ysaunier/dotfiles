@@ -50,11 +50,7 @@
     cm = commit -m
 
     # Revert changes
-;     undo = reset --hard origin/master
-;
-;     undomain = reset --hard origin/main
-;
-    undo = "!f() { ref=\"$(git symbolic-ref refs/remotes/origin/HEAD)\"; branch=\"$(basename \"$ref\")\"; reset --hard \"$branch\"; }; f"
+    undo = "!f() { ref=\"$(git symbolic-ref refs/remotes/origin/HEAD)\"; branch=\"$(basename \"$ref\")\"; echo \"reset to origin/$branch\"; git reset --hard \"origin/$branch\"; }; f"
 
     # Create delta with the last version tag
     rnotes = "! fn() { git fetch --all; git log $(git describe --tags --abbrev=0 origin/master)..origin/master --format=\"- %s\"; }; fn"
